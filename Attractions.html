@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>探索景點</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: 	#DFFFDF;
+    }
+
+    header {
+      background-color: #D2E9FF;
+      color: rgb(9, 9, 9);
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .restaurant {
+      flex: 0 0 calc(25% - 15px); /* 每行顯示4個 */
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .restaurant:hover {
+      transform: scale(1.05);
+    }
+
+    .restaurant img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .restaurant h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+
+    .restaurant p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .pagination {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .pagination button {
+      margin: 0 5px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #eee;
+      cursor: pointer;
+    }
+
+    .pagination button.active {
+      background-color: #ff6f61;
+      color: white;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 30px;
+      padding: 10px 15px;
+      font-size: 14px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      display: none;
+      z-index: 999;
+    }
+
+    /* RWD */
+    @media screen and (max-width: 768px) {
+      .restaurant {
+        flex: 0 0 calc(48% - 10px); /* 每行顯示2個 */
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .restaurant {
+        flex: 0 0 100%; /* 每行顯示1個 */
+      }
+    }
+
+    /* Pagination at bottom */
+    #pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>🛵 小琉球哪裡玩</header>
+
+<div class="container" id="restaurant-list">
+  <!-- 這裡添加景點資料 -->
+  <!-- 範例景點 -->
+  <div class="restaurant">
+    <a href="https://liuchiutaiwan.com.tw/liuchiu/blogInfo/%E5%B0%8F%E7%90%89%E7%90%83%E6%97%85%E9%81%8A%E6%8E%A8%E8%96%A6/%E5%B0%8F%E7%90%89%E7%90%83%E7%B6%B2%E7%BE%8E%E8%80%81%E6%9C%A8%E6%80%8E%E9%BA%BC%E5%8E%BB/%E5%B0%8F%E7%90%89%E7%90%83%E7%B6%B2%E7%BE%8E%E8%80%81%E6%9C%A8%E5%B0%8E%E8%88%AA_396.html" target="_blank">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipNnvpf7SW-sZ4h9ZPmEaQDzzHu-GE_McyNBVz7r=s680-w680-h510">
+      <h3>小琉球網美老木</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/zNNm8aJWFhisSBC37" target="_blank">
+          屏東縣琉球鄉三民路253-8號
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">適合拍網美照!</h1>
+    </a>
+  </div>
+  <!-- 你可以依此方式再添加其他景點 -->
+  <div class="restaurant">
+    <a href="http://gototravel.tw/xiao-liuqiu-vase-rock/" target="_blank">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipOYCueukxzlY_LZaGdh0miI1EdgSnqqAXThOrPY=s680-w680-h510">
+      <h3>小琉球花瓶岩</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/dx8bzPhsKBumgywbA" target="_blank">
+          屏東縣琉球鄉
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">這裡可以浮淺</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://udn.com/news/story/120910/6443735" target="_blank">
+      <img src="https://www.welcometw.com/wp-content/uploads/2022/06/%E7%99%BD%E7%87%88%E5%A1%94@liao908-850x638.jpg">
+      <h3>白燈塔</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/8kV2Fc5F5krBCczT6" target="_blank">
+          屏東縣琉球鄉
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">好像有鬧鬼欸</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://adontrip.com/blog/55026/" target="_blank">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipMQ6EplDfycx_ySAf3yrBHL8WOVIm41M8z-3D7y=s680-w680-h510">
+      <h3>旭日亭</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/pwxcnmaV1Wx91YGu5" target="_blank">
+          屏東縣琉球鄉環島公路
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">感覺也蠻適合拍照的</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://travel.ettoday.net/article/2312766.htm" target="_blank">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipOKBO4GaHT5MSWNbr9KTbZpsZOE1AbPJU0TMfJj=s680-w680-h510">
+      <h3>落日亭</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/h4qDCC7Cm1uu66u29" target="_blank">
+          屏東縣琉球鄉環島公路
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">日落可以不要日出</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://gototravel.tw/liuqiu-baish-port/" target="_blank">
+      <img src="https://img.gototravel.tw/2019/taiwan/Xiao-Liuqiu/five-clock-roast-meat/Liuqiu-Baish--Port-21.jpg">
+      <h3>白沙觀光港</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/J46HpfYJLJ7oMFUT8" target="_blank">
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">好像很漂亮?</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://www.klook.com/zh-TW/activity/41147-wonderland-deer-ticket-lambai-island-taiwan/" target="_blank">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipMatX01uIJ5bdNeVKsKIXD-nuvRzqcAiSdFRlhY=s680-w680-h510">
+      <h3>鹿粼梅花鹿園區</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/6r6tHAkf7PmYANwW7" target="_blank">
+          屏東縣琉球鄉復興路2之70號
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">有想要看鹿可以去</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://yanmeiantrip.com/ocean/" target="_blank">
+      <img src="https://yanmeiantrip.com/wp-content/uploads/IMG_9955.jpg">
+      <h3>小琉球海洋館</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/YcQesvgE7xJqnGUu8" target="_blank" onclick="showImage()">
+          屏東縣琉球鄉三民路1-100號
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">欸這我蠻想去的</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://gototravel.tw/liuqiu-venice-beach/" target="_blank">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipOvA7WAYWGG4u8Db_Q2lNK7xbwDkwzmZh2dIuoZ=s680-w680-h510">
+      <h3>蛤板灣</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/RsqVssAuMF2PZxbt6" target="_blank">
+          屏東縣琉球鄉
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">這我也想去<br>很好玩的感覺</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://travel.yam.com/article/118114" target="_blank">
+      <img src="https://lh3.googleusercontent.com/p/AF1QipOUDLK9x8zMPwmxvA9nwpYx2Z_GjFsO2NsuVs1R=s680-w680-h510">
+      <h3>中澳沙灘</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/s4ay6yFXEBZTRfGf7" target="_blank">
+          屏東縣琉球鄉三民路124號
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">有海龜海邊我都想去</h1>
+    </a>
+  </div>
+  
+  <div class="restaurant">
+    <a href="https://boo2k.com/archives/1051" target="_blank">
+      <img src="https://i0.wp.com/boo2k.com/wp-content/uploads/2021/05/3C1A5475.jpg?resize=860%2C573&ssl=1">
+      <h3>肚仔坪潮間帶</h3>
+      <p>
+        <a href="https://maps.app.goo.gl/He5QhGepzm15gjEf9" target="_blank">
+          屏東縣琉球鄉
+        </a>
+      </p>
+      <h1 style="font-size:1.5vw">哈哈哈哈又是海邊</h1>
+    </a>
+  </div>
+  
+</div>
+
+<div id="pagination" class="pagination"></div>
+<a href="https://hyuh477.github.io/123/">美食專區</a>
+<button class="back-to-top">回到最上面</button>
+
+<script>
+  const restaurantsPerPage = 8;
+  const restaurants = document.querySelectorAll('.restaurant');
+  const pagination = document.getElementById('pagination');
+  const totalRestaurants = restaurants.length;
+  const totalPages = Math.ceil(totalRestaurants / restaurantsPerPage);
+  let currentPage = 1;
+
+  function goToPage(pageNumber) {
+    currentPage = pageNumber;
+    const start = (pageNumber - 1) * restaurantsPerPage;
+    const end = start + restaurantsPerPage;
+
+    restaurants.forEach((restaurant, index) => {
+      if (index >= start && index < end) {
+        restaurant.style.display = 'inline-block';
+      } else {
+        restaurant.style.display = 'none';
+      }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updatePaginationButtons();
+  }
+
+  function updatePaginationButtons() {
+    const paginationContainer = document.querySelector('#pagination');
+    paginationContainer.innerHTML = '';
+
+    const startPage = Math.max(currentPage - 2, 1);
+    const endPage = Math.min(currentPage + 2, totalPages);
+
+    for (let i = startPage; i <= endPage; i++) {
+      const button = document.createElement('button');
+      button.textContent = i;
+      button.onclick = () => goToPage(i);
+      if (i === currentPage) button.classList.add('active');
+      paginationContainer.appendChild(button);
+    }
+	
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Prev';
+    prevButton.onclick = () => {
+      if (currentPage > 1) goToPage(currentPage - 1);
+    };
+
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next';
+    nextButton.onclick = () => {
+      if (currentPage < totalPages) goToPage(currentPage + 1);
+    };
+
+    paginationContainer.insertBefore(prevButton, paginationContainer.firstChild);
+    paginationContainer.appendChild(nextButton);
+  }
+
+  window.addEventListener('scroll', function () {
+    let button = document.querySelector('.back-to-top');
+    if (window.scrollY > 300) {
+      button.style.display = 'block';
+    } else {
+      button.style.display = 'none';
+    }
+  });
+
+  document.querySelector('.back-to-top').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  goToPage(1);
+</script>
+
+</body>
+</html>
